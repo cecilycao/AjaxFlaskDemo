@@ -34,7 +34,7 @@ url_for('static', filename='jquery-1.11.3.min.js') }}"></script> -->
           endButton.onclick = end;
         }
 
-        //Create an canvas with 
+        //Create an canvas, fill it with squares
         function fillScene() {
           var canvasArea = document.getElementById("canvas");
           canvasArea.style.height = CANVAS_HEIGHT + "px";
@@ -87,24 +87,23 @@ url_for('static', filename='jquery-1.11.3.min.js') }}"></script> -->
             //ajax pass x, y to python
             var $SCRIPT_ROOT = {{request.script_root|tojson|safe}};
 
-            // $.ajax({
-            //   type: "POST",
-            //   url: $SCRIPT_ROOT ,
-            //   dataType: "json",
-            //   data : {
-            //     //"clickedCount" : clickedCount,
-            //         "clickedX" : xValue, 
-            //         "clickedY": yValue,
-            // },
-            //     error: function( XMLResponse ) {
-            //         alert( XMLResponse.responseText )
-            //     },
-            //     success : function ( data, textStatus ) {
-            //       alert("success");
-            //         //markCheckedPoint(data.contains, data.postX, data.postY);
-            //     }
-            //  } );
-
+            $.ajax({
+              type: "POST",
+              url: $SCRIPT_ROOT ,
+              dataType: "json",
+              data : {
+                //"clickedCount" : clickedCount,
+                    "clickedX" : xValue, 
+                    "clickedY": yValue,
+            },
+                error: function( XMLResponse ) {
+                    alert( XMLResponse.responseText )
+                },
+                success : function ( data, textStatus ) {
+                  alert("success");
+                  markCheckedPoint(data.contains, data.postX, data.postY);
+                }
+             } );
             // var checkedX = xValue + 1;
             // var checkedY = yValue - 1;
             // if (checkedX <= 10 && checkedY > 0) {

@@ -7,9 +7,6 @@ body, button {
 	font-size: 14pt;
 }
 
-/*body {
-	text-align: center;
-}*/
 
 #canvas {
 	margin-left: auto;
@@ -36,9 +33,3 @@ body, button {
   border-radius: 50%;
   display: inline-block;
 }
-/*
-.canmove:hover {
-	border-color: red;
-	color: red;
-	cursor: pointer;
-}*/

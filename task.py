@@ -12,13 +12,17 @@ def index():
         yValue = request.form.get( "clickedY")
 
         containsPoint = 0;
+        checkedX = xValue + 1;
+        checkedY = yValue -1;
+        if checkedX <= 10 && checkedY > 0:
+            containsPoint = 1;
 
 
         print("(" + xValue + " " + yValue + ")");
 
         return jsonify( contains = containsPoint,
-                        postX = xValue + 1,
-                        postY = yValue -1
+                        postX = checkedX,
+                        postY = checkedY
                         )
     else:
         return render_template( "index.html")
