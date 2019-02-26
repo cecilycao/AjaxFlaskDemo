@@ -8,24 +8,27 @@ app = Flask( __name__ )
 
 def index():
     if request.method == "POST":
-        xValue = request.form.get( "clickedX")
-        yValue = request.form.get( "clickedY")
+        try:
+            xValue = int(request.form.get( "clickedX"))
+            yValue = int(request.form.get( "clickedY"))
+        except:
+            raise Exception("Invalid form data.")
 
         containsPoint = 0;
         checkedX = xValue + 1;
         checkedY = yValue -1;
-        if checkedX <= 10 && checkedY > 0:
+        if checkedX <= 10 and checkedY > 0:
             containsPoint = 1;
 
 
-        print("(" + xValue + " " + yValue + ")");
+        print(xValue, yValue);
 
         return jsonify( contains = containsPoint,
                         postX = checkedX,
                         postY = checkedY
                         )
     else:
-        return render_template( "index.html")
+        return render_template("index.html")
  
  
 if __name__ == "__main__":
