@@ -85,7 +85,7 @@ url_for('static', filename='jquery-1.11.3.min.js') }}"></script> -->
 
             
             //ajax pass x, y to python
-            var $SCRIPT_ROOT = {{request.script_root|tojson|safe}};
+            var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 
             $.ajax({
               type: "POST",
@@ -93,17 +93,17 @@ url_for('static', filename='jquery-1.11.3.min.js') }}"></script> -->
               dataType: "json",
               data : {
                 //"clickedCount" : clickedCount,
-                    "clickedX" : xValue, 
-                    "clickedY": yValue,
-            },
-                error: function( XMLResponse ) {
-                    alert( XMLResponse.responseText )
-                },
-                success : function ( data, textStatus ) {
-                  alert("success");
-                  markCheckedPoint(data.contains, data.postX, data.postY);
-                }
-             } );
+                "clickedX" : xValue, 
+                "clickedY": yValue,
+              },
+              error: function( XMLResponse ) {
+                // alert( XMLResponse.responseText )
+              },
+              success : function ( data, textStatus ) {
+                // alert("success");
+                markCheckedPoint(data.contains, data.postX, data.postY);
+              }
+             });
             // var checkedX = xValue + 1;
             // var checkedY = yValue - 1;
             // if (checkedX <= 10 && checkedY > 0) {
@@ -118,10 +118,10 @@ url_for('static', filename='jquery-1.11.3.min.js') }}"></script> -->
 
         function markCheckedPoint(contains, x, y){
           if (contains == 0) {
-            console.log("( " + checkedX + " , " + checkedY + " ) is not accessible");
+            console.log("( " + x + " , " + y + " ) is not accessible");
           } else {
             var nextPoint = document.getElementById(x + " " + y);
-            nextPoint.classList.add("checkedSquare");     
+            nextPoint.classList.add("dot");     
           }
 
         }
